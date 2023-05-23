@@ -6,12 +6,13 @@
 
 // Plugins
 import { loadFonts } from './webfontloader'
+import { createHead } from '@vueuse/head'
 import vuetify from './vuetify'
 import router from '../router'
 
-export function registerPlugins (app) {
+const head = createHead()
+
+export function registerPlugins(app) {
   loadFonts()
-  app
-    .use(vuetify)
-    .use(router)
+  app.use(head).use(vuetify).use(router)
 }
