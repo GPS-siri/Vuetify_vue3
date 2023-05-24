@@ -38,6 +38,12 @@
 
             Get Started
           </v-btn>
+          <div>
+            {{ day }}
+          </div>
+          <div>
+            {{ dayjs() }}
+          </div>
         </v-col>
 
         <v-col cols="auto">
@@ -59,7 +65,9 @@
 </template>
 
 <script setup>
-//
+import dayjs from 'dayjs'
+
+const day = dayjs()
 </script>
 
 <style lang="scss"></style>
