@@ -42,7 +42,7 @@
             {{ day }}
           </div>
           <div>
-            {{ dayjs() }}
+            {{ $t('title') + '????' }}
           </div>
         </v-col>
 
