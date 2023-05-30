@@ -2,7 +2,8 @@
   "name": "firstsetting-vue3-vuetify",
   "version": "0.0.0",
   "scripts": {
-    "dev": "vite",
+    "dev": "vite --mode dev",
+    "start": "vite --mode prod",
     "build": "vite build",
     "preview": "vite preview",
     "lint": "eslint . --fix --ignore-path .gitignore"

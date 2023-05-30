@@ -21,6 +21,19 @@ useHead({
   ]
 })
 </script>
+<!-- <script>
+export default {
+  created() {
+    console.log(
+      process.env.VUE_APP_I18N_LOCALE,
+      process.env.VUE_APP_I18N_FALLBACK_LOCALE,
+      import.meta.env,
+      'test here '
+    )
+  },
+  methods: {}
+}
+</script> -->
 
 <style lang="scss">
 @import '@/assets/css/global.scss';

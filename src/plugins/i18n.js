@@ -19,10 +19,10 @@ const messages = {
 //   })
 //   return messages
 // }
-console.log(process.env.VUE_APP_I18N_LOCALE, process.env.VUE_APP_I18N_FALLBACK_LOCALE, 'test here ')
+console.log(import.meta.env, 'test here ')
 
 export default createI18n({
-  locale: process.env.VUE_APP_I18N_LOCALE || 'ko',
-  fallbackLocale: process.env.VUE_APP_I18N_FALLBACK_LOCALE || 'ko',
+  locale: import.meta.env.VITE_APP_I18N_LOCALE || 'en',
+  fallbackLocale: import.meta.env.VITE_APP_I18N_FALLBACK_LOCALE || 'en',
   messages
 })
