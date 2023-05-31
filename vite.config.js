@@ -1,7 +1,6 @@
 // Plugins
 import vue from '@vitejs/plugin-vue'
 import vuetify, { transformAssetUrls } from 'vite-plugin-vuetify'
-
 // Utilities
 import { defineConfig } from 'vite'
 import { fileURLToPath, URL } from 'node:url'
@@ -17,7 +16,10 @@ export default defineConfig({
       autoImport: true
     })
   ],
-  define: { 'process.env': {} },
+  define: {
+    'process.env': 'import.meta.env'
+  },
+  envPrefix: 'VUE_',
   resolve: {
     alias: {
       '@': fileURLToPath(new URL('./src', import.meta.url))
