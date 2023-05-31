@@ -19,8 +19,6 @@ const messages = {
 //   })
 //   return messages
 // }
-console.log(import.meta.env, 'test here ')
-console.log(process.env, 'test here 22 ')
 
 export default createI18n({
   locale: import.meta.env.VITE_APP_I18N_LOCALE || 'en',

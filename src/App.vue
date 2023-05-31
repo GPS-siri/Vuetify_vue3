@@ -6,6 +6,9 @@
 import { computed, reactive } from 'vue'
 import { useHead } from '@vueuse/head'
 
+console.log(import.meta.env, 'test here ')
+console.log(process.env, 'test here 22 ')
+
 const siteData = reactive({
   title: `Vue3_project_test`,
   description: `PROTECT Pick-here-project / Reserve-lite-project with Vue3`
