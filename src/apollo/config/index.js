@@ -1,47 +1,45 @@
-// createHttpLink: 필요시 @apollo/client/core 에서 삽입
-import axios from 'axios'
-import { ApolloClient, InMemoryCache } from '@apollo/client/core'
-import { createApolloProvider } from '@vue/apollo-option'
+import { ApolloClient } from 'apollo-client'
+// import { createHttpLink } from 'apollo-link-http'
+import { InMemoryCache } from 'apollo-cache-inmemory'
+import VueApollo from 'vue-apollo'
 import { createUploadLink } from 'apollo-upload-client'
-import { buildAxiosFetch } from '@lifeomic/axios-fetch'
+import axios from 'axios'
+const { buildAxiosFetch } = require('@lifeomic/axios-fetch')
+// -------------------- 아폴로 셋팅 ------------------------ //
+
+const uploadLink = createUploadLink({
+	uri: process.env.VUE_APP_BACKEND_URL + '/graphql',
+	fetch: buildAxiosFetch(axios, (config, input, init) => ({
+		...config,
+		onUploadProgress: init.onUploadProgress,
+	})),
+})
 
 // HTTP connection to the API
 // const httpLink = createHttpLink({
-//   // You should use an absolute URL here
 //   uri: process.env.VUE_APP_BACKEND_URL + '/graphql'
 // })
-
-const uploadLink = createUploadLink({
-  uri: process.env.VUE_APP_BACKEND_URL_TEST + '/graphql',
-  fetch: buildAxiosFetch(axios, (config, input, init) => ({
-    ...config,
-    onUploadProgress: init.onUploadProgress
-  }))
-})
 
 // Cache implementation
 const cache = new InMemoryCache()
 
-// Create the apollo client
+// Create the apollo clients
 const apolloClient = new ApolloClient({
-  link: uploadLink,
-  uri: 'http://localhost:4042/graphql',
-  cache,
-  defaultOptions: {
-    watchQuery: {
-      fetchPolicy: 'no-cache'
-    },
-    query: {
-      fetchPolicy: 'no-cache'
-    },
-    mutate: {
-      fetchPolicy: 'no-cache'
-    }
-  }
+	link: uploadLink,
+	cache,
+	defaultOptions: {
+		watchQuery: {
+			fetchPolicy: 'no-cache',
+		},
+		query: {
+			fetchPolicy: 'no-cache',
+		},
+		mutate: {
+			fetchPolicy: 'no-cache',
+		},
+	},
 })
 
-const apolloProvider = createApolloProvider({
-  defaultClient: apolloClient
+export default new VueApollo({
+	defaultClient: apolloClient,
 })
-
-export default apolloProvider

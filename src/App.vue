@@ -1,54 +1,81 @@
 <template>
-  <router-view />
+	<v-app>
+		<router-view></router-view>
+
+		<v-dialog
+			v-model="$store.state.loading"
+			fullscreen
+			overlay-color="transparent"
+			transition="dialog-center-transition"
+			content-class="mainloadingBar"
+		>
+			<!-- style="background-color: rgba(255, 255, 255, 0.5);" -->
+			<v-container fluid fill-height>
+				<v-layout justify-center align-center>
+					<v-progress-circular indeterminate :size="100" :width="5" color="grey lighten-1"> </v-progress-circular>
+				</v-layout>
+			</v-container>
+		</v-dialog>
+	</v-app>
 </template>
 
-<script setup>
-import { computed, reactive } from 'vue'
-import { useHead } from '@vueuse/head'
-
-// env 설정 적용 테스트용 → 프로젝트 시작시, 콘솔 확인 후 제거 필요
-console.log(import.meta.env, 'test here ')
-console.log(process.env, 'test here 22 ')
-
-const siteData = reactive({
-  title: `Vue3_project_test`,
-  description: `PROTECT Pick-here-project / Reserve-lite-project with Vue3`
-})
-useHead({
-  // Can be static or computed
-  title: computed(() => siteData.title),
-  meta: [
-    {
-      name: `description`,
-      content: computed(() => siteData.description)
-    }
-  ]
-})
-</script>
 <script>
-// import axios from 'axios'
-
 export default {
-  created() {
-    this.testMethod()
-  },
-  methods: {
-    async testMethod() {
-      // await this.$store
-      //   .dispatch('testQuery')
-      //   .then((res) => console.log('graphql strapi_v4 test success !', res))
-      // await this.$store
-      //   .dispatch('terms')
-      //   .then((res) => console.log('graphql strapi_v3 test success !', res))
-      // await axios({
-      //   url: process.env.VUE_APP_BACKEND_URL + '/api/test-contents/1',
-      //   method: 'GET'
-      // }).then((res) => console.log('axios test success !!', res))
-    }
-  }
+	name: 'App',
+	components: {},
+	watch: {
+		// to, form
+		$route() {
+			if (window.location.pathname.includes('counselor')) {
+				if (
+					window.location.pathname.includes('clientManagement') ||
+					window.location.pathname.includes('login') ||
+					window.location.pathname.includes('register')
+				) {
+					this.$store.state.headerMobileStatus = true
+					this.$store.state.footerMobileStatus = false
+				} else {
+					this.$store.state.headerMobileStatus = true
+					this.$store.state.footerMobileStatus = true
+				}
+			} else {
+				this.$store.state.headerMobileStatus = false
+				this.$store.state.footerMobileStatus = false
+			}
+			// if (to.path !== form.path) this.$store.state.data(this.$store.state.$route.params.index)
+		},
+	},
+	data() {
+		return {
+			loading: false,
+			mobileHeight: 0,
+		}
+	},
+	created() {
+		this.mobileHeight = window.innerHeight || document.body.clientHeight
+		if (window.location.pathname.includes('counselor')) {
+			this.$store.state.mobileStatus = true
+		} else {
+			this.$store.state.mobileStatus = false
+		}
+	},
+	methods: {
+		calc_height() {
+			if (this.$store.state.headerMobileStatus && this.$store.state.footerMobileStatus) {
+				return this.mobileHeight - 120
+			} else if (this.$store.state.headerMobileStatus || this.$store.state.footerMobileStatus) {
+				return this.mobileHeight - 60
+			} else {
+				return this.mobileHeight
+			}
+		},
+	},
 }
 </script>
-
 <style lang="scss">
 @import '@/assets/css/global.scss';
+.personal_drawer .nav_profile {
+	padding: 28px 28px 20px;
+	background: no-repeat center/cover url(./assets/images/image/personal_photo.png);
+}
 </style>
