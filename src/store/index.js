@@ -1,6 +1,7 @@
+/* eslint-disable no-empty-pattern */
 import { createStore } from 'vuex'
 import apollo from '@/apollo/config'
-import { testQuery } from '@/apollo/query'
+import { testQuery, terms } from '@/apollo/query'
 import {} from '@/apollo/mutation'
 
 import { moduleA } from '@/store/moduleA'
@@ -12,7 +13,6 @@ export default createStore({
   mutations: {},
   actions: {
     // testQuery({}, input) {
-    // eslint-disable-next-line no-empty-pattern
     testQuery({}) {
       return new Promise((resolve, reject) => {
         apollo.clients['defaultClient']
@@ -24,6 +24,21 @@ export default createStore({
             // 		Authorization: 'Bearer ' + sessionStorage.getItem(tokenName),
             // 	},
             // },
+          })
+          .then(({ data }) => {
+            resolve(data)
+          })
+          .catch((err) => {
+            reject(err)
+          })
+      })
+    },
+    terms({}, input) {
+      return new Promise((resolve, reject) => {
+        apollo.clients['defaultClient']
+          .query({
+            query: terms,
+            variables: input
           })
           .then(({ data }) => {
             resolve(data)

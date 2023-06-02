@@ -12,7 +12,7 @@ import { buildAxiosFetch } from '@lifeomic/axios-fetch'
 // })
 
 const uploadLink = createUploadLink({
-  uri: process.env.VUE_APP_BACKEND_URL + '/graphql',
+  uri: process.env.VUE_APP_BACKEND_URL_TEST + '/graphql',
   fetch: buildAxiosFetch(axios, (config, input, init) => ({
     ...config,
     onUploadProgress: init.onUploadProgress

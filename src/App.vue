@@ -6,6 +6,7 @@
 import { computed, reactive } from 'vue'
 import { useHead } from '@vueuse/head'
 
+// env 설정 적용 테스트용 → 프로젝트 시작시, 콘솔 확인 후 제거 필요
 console.log(import.meta.env, 'test here ')
 console.log(process.env, 'test here 22 ')
 
@@ -25,7 +26,7 @@ useHead({
 })
 </script>
 <script>
-import axios from 'axios'
+// import axios from 'axios'
 
 export default {
   created() {
@@ -33,14 +34,16 @@ export default {
   },
   methods: {
     async testMethod() {
-      await this.$store
-        .dispatch('testQuery')
-        .then((res) => console.log('graphql test success !', res))
-
-      await axios({
-        url: process.env.VUE_APP_BACKEND_URL + '/api/test-contents/1',
-        method: 'GET'
-      }).then((res) => console.log('axios test success !!', res))
+      // await this.$store
+      //   .dispatch('testQuery')
+      //   .then((res) => console.log('graphql strapi_v4 test success !', res))
+      // await this.$store
+      //   .dispatch('terms')
+      //   .then((res) => console.log('graphql strapi_v3 test success !', res))
+      // await axios({
+      //   url: process.env.VUE_APP_BACKEND_URL + '/api/test-contents/1',
+      //   method: 'GET'
+      // }).then((res) => console.log('axios test success !!', res))
     }
   }
 }
