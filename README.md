@@ -12,6 +12,10 @@ contact: gps.siri92@gmail.com
 
 ```
 1. 23.06.01 - 프로텍트 GPS.siri 제작
+2. 23.11.24 - 프로텍트 조재호 Vuetify3 업데이트 Vue2 자료 정리
+               Vuetify3에서 Labs에서 실험중이던 component디자인들 정식패치완료(LTS)
+               composition API와 Option API의 globalProperty샘플 추가(작동확인)
+               I18next 환경파일 수정
 ```
 
 # Project Stack Info
@@ -104,3 +108,10 @@ npm run test:unit
 ```sh
 npm run lint
 ```
+
+## ETC
+
+향후 package의 업데이트가 필요하다고 판단될경우에는
+인스톨 후 yarn upgrade packageName@version으로 업데이트할것
+패키지를 지정안하면 모든 패키지를 업데이트하므로 그경우에는 깃에 업로드하지말고
+다시 작성필요
