@@ -16,6 +16,9 @@ contact: gps.siri92@gmail.com
                Vuetify3에서 Labs에서 실험중이던 component디자인들 정식패치완료(LTS)
                composition API와 Option API의 globalProperty샘플 추가(작동확인)
                I18next 환경파일 수정
+3. 25.01.10 - 프로텍트 조재호 Vuetify 업데이트
+               Vuetify3 3.4.2 -> 3.7.6으로 변경 그동안 안되던 일반기능들 추가로 사용가능해짐
+               업데이트내용 관련해서는 Vuetify3 참조해서 사용할것
 ```
 
 # Project Stack Info
